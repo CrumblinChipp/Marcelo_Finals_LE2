@@ -64,9 +64,9 @@ class DiceGame:
 
     def show_top_scores(self):
         try:
-            with open("data/ranking.txt", "r") as file:
+            with open("utils/data/ranking.txt", "r") as f:
                 scores = []
-                for line in file.readlines():
+                for line in f.readlines():
                     parts = line.split(',')
                     username = parts[0].split(':')[0].strip()
                     points = int(parts[0].split('-')[1].strip().split()[0])
@@ -89,9 +89,11 @@ class DiceGame:
     
     def menu(self, username):
         print(f"Welcome {username}!")
-        print("Menu:")
-        print("1. Start Game\n2. Show top scores\n3. Log out\n")
+        
         while True:
+            print("===================")
+            print("Menu:")
+            print("1. Start Game\n2. Show top scores\n3. Log out\n")
             try:
                 action = int(input("Enter choice, or leave blank to return: "))
             except ValueError:
@@ -101,7 +103,7 @@ class DiceGame:
             if action == 1:
                 self.play_game(username)
             elif action == 2:
-                if os.path.exists("data/ranking.txt") and os.stat("data/ranking.txt").st_size > 0:
+                if os.path.exists("utils/data/ranking.txt") and os.stat("utils/data/ranking.txt").st_size > 0:
                     self.show_top_scores()
                 else:
                     print("No scores yet")

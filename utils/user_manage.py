@@ -50,6 +50,7 @@ class UserManager:
 				continue
 			self.validate_account(username, password)
 			print("Registration Successful!")
+			return
 			
 
 	def login(self, username, password):

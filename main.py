@@ -3,11 +3,12 @@ from utils import dice_game, user_manage
 def main():
     user = user_manage.UserManager()
     dice = dice_game.DiceGame()
-    print("Welcome to Dice Roll Game!")
-    print("1. Register")
-    print("2. Log in")
-    print("3. Exit")
     while True:
+        print("============================")
+        print("Welcome to Dice Roll Game!")
+        print("1. Register")
+        print("2. Log in")
+        print("3. Exit")
         try:
             action = int(input("enter choice, or leave blank to return: "))
         except Exception:
