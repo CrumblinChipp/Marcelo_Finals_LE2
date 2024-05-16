@@ -2,6 +2,7 @@ from utils import dice_game, user_manage
 
 def main():
     user = user_manage.UserManager()
+    dice = dice_game.DiceGame()
     print("Welcome to Dice Roll Game!")
     print("1. Register")
     print("2. Log in")
@@ -15,12 +16,15 @@ def main():
         if action == 1:
             user.register()
         elif action == 2:
-            user.login()
+            username = input("Enter username: ")
+            password = input("Enter password: ")
+            user.login(username, password)
+            dice.menu(username)
         elif action == 3:
             exit()
         else:
             print("Invalid Input.Please only enter 1-3")
-    
-    
+
+
 if __name__ == "__main__":
     main()

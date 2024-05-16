@@ -1,4 +1,0 @@
-User: Points - 20	, Wins - 4
-User: Points - 5	, Wins - 1
-User: Points - 10	, Wins - 2
-User: Points - 6	, Wins - 1

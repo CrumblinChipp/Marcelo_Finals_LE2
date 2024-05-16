@@ -1,62 +1,63 @@
 import os
 
 class UserManager:
-	user_dict = {}
-    
-	def user_dict(self):
-		with open("data/Accounts.txt", 'r') as file:
-			for line in file:
-				username, password = line.strip().split(', ')
-				self.user_dict[username] = password
-		file.close()
-  
-	def load_users():
-		if not os.path.exists("data"):
-			os.makedirs("data")
+	def __init__(self) -> None:
+		self.users = {}
 
-	def save_users(self, user, key):
-		self.load_users()
-		f = open("data/Accounts.txt", "a")
-		f.write(f"{user},{key}")
-		f.close()
-		pass
+	def load_users(self):
+			file_path = os.path.join('utils/data', 'Accounts.txt')
+			users = []
+			if os.path.exists(file_path):
+				with open(file_path, 'r') as file:
+					lines = file.readlines()
+					for line in lines:
+						parts = line.strip().split(',')
+						username = parts[0]
+						password = parts[1]
+						users.append((username, password))
+			return users
 
-	def validate_username(self, username):
-		self.user_dict()
-		if username in self.user_dict.key():
-			return False
+	def save_user(self, username, password):
+		user_folder = 'utils/data'    
+		user_file_path = os.path.join(user_folder, 'Accounts.txt')
+
+		if not os.path.exists(user_folder):
+			os.makedirs(user_folder)
+
+		with open(user_file_path, 'a+') as file:
+			file.write(f"{username},{password}\n")
+
+	def validate_account(self, username, password):
+		account_list = 	self.load_users()
+		if (username, password) in account_list:
+					print("Username already exists")
+					return
 		else:
-			return True
-
-	def validate_password(self, username, password):
-		self.user_dict()
-		if password == self.user_dict[username]:
-			return False
-		else:
-			return True
+			self.save_user(username, password)
 
 	def register(self):
 		print("Registration")
-		file_path = "data/Accounts.txt"
 		while True:
 			username = input("Enter username(at least 4 characters), leave blank to cancel: ")
 			if len(username) < 4:
-				print("username must be 4 characters long")
-				continue
-			if self.validate_username(username) == False:
-				print("Username is already used")
+				print("Username must be 4 characters long")
 				continue
 			password = input("Enter password(at least 8 characters), leave blank to cancel: ")
-			if len(username) < 8:
-				print("Password must be 4 characters long")
-				continue
-			if self.validate_password(username, password) == False:
-				print("Username is already used")
+			if len(password) < 8 :
+				print("Password must be 8 characters long")
 				continue
 			if username == "" or password == "":
-				break
-			self.save_users(username, password)
+				continue
+			self.validate_account(username, password)
 			print("Registration Successful!")
+			
 
-user = UserManager()
-user.register()
+	def login(self, username, password):
+		account_list = 	self.load_users()
+		while True:
+			if (username, password) in account_list:
+				print("Log in Successful")
+				return
+			else:
+				print("Invalid Username or Password")
+				return
