@@ -10,7 +10,7 @@ def main():
         print("2. Log in")
         print("3. Exit")
         try:
-            action = int(input("enter choice, or leave blank to return: "))
+            action = int(input("Enter choice, or leave blank to return: "))
         except Exception:
             print("Please only enter 1-3")
             continue

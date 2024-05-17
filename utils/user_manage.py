@@ -52,7 +52,6 @@ class UserManager:
 			print("Registration Successful!")
 			return
 			
-
 	def login(self, username, password):
 		account_list = 	self.load_users()
 		while True:
