@@ -80,8 +80,7 @@ class DiceGame:
                 print(f"{i}. {username}: Points: {points}, Wins: {wins}")
         except FileNotFoundError:
             print("No scores yet")
-        except Exception as e:
-            print(f"An error occurred: {e}")
+        except Exception as e:            print(f"An error occurred: {e}")
     
     def logout(self):
         print("Logging out...")
